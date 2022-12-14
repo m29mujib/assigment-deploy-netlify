@@ -9,10 +9,12 @@ const EditPhoto = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { id } = useParams();
+
+  const url = "https://gallery-app-server.vercel.app/photos"
   const editPhoto = (e) => {
     e.preventDefault();
     // TODO: answer here 
-    fetch(`https://gallery-app-server.vercel.app/photos/${id}`, {
+    fetch(`${url}/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
@@ -37,7 +39,7 @@ const EditPhoto = () => {
   useEffect(() => {
     setLoading(true);
     // TODO: answer here
-    fetch("https://gallery-app-server.vercel.app/photos" + "/" + id)
+    fetch(`${url}/${id}`)
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
