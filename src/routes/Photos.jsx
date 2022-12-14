@@ -9,15 +9,15 @@ const Photos = () => {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [error] = useState(null);
-  // const url = "https://gallery-app-server.vercel.app/photos"
+  const url = "https://gallery-app-server.vercel.app/photos"
   const deletePhoto = (id) => {
     // TODO: answer here
-    // fetch(`${url}/${id}`, {
-    //   method: "DELETE"
-    // })
-    fetch(`https://gallery-app-server.vercel.app/photos/${id}`, {
-      method: "DELETE",
+    fetch(`${url}/${id}`, {
+      method: "DELETE"
     })
+    // fetch(`https://gallery-app-server.vercel.app/photos/${id}`, {
+    //   method: "DELETE",
+    // })
       .then((response) => response.json())
       .then((data) => {
         setPhotos(photoss => photoss.filter(photo => photo.id !== id))
@@ -28,7 +28,7 @@ const Photos = () => {
   useEffect(() => {
     setLoading(true);
     // TODO: answer here
-    fetch("https://gallery-app-server.vercel.app/photos" + `?_sort=id&_order=${sort}&q=${submited}`)
+    fetch(url + `?_sort=id&_order=${sort}&q=${submited}`)
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
@@ -39,7 +39,7 @@ const Photos = () => {
   useEffect(() => {
     setLoading(true);
     // TODO: answer here
-    fetch("https://gallery-app-server.vercel.app/photos")
+    fetch(url)
       .then((response) => response.json())
       .then((data) => {
         setLoading(false);
